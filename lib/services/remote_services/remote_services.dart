@@ -17,11 +17,14 @@ class RemoteServices {
       var response = await http
           .post(Uri.parse(ApiConstants.BASE_URL + url),
           headers: <String, String>{
+            'Authorization': '${ApiConstants.TOKEN_TYPE} ${ApiConstants.TOKEN}',
             'Content-Type': 'application/json; charset=UTF-8',
             "Accept": "application/json"
           },
           body: body)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
+      print('get response = ${response.body}');
+
       return _processResponse(response);
     } on SocketException {
       throw Exception(AppStrings.noInternetConnection);
@@ -43,10 +46,13 @@ class RemoteServices {
       var response = await http
           .post(Uri.parse("${ApiConstants.BASE_URL + url}/$id"),
           headers: <String, String>{
+            'Authorization': '${ApiConstants.TOKEN_TYPE} ${ApiConstants.TOKEN}',
             'Content-Type': 'application/json; charset=UTF-8',
           },
           body: body)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
+      print('get response = ${response.body}');
+
       return _processResponse(response);
     } on SocketException {
       throw Exception(AppStrings.noInternetConnection);
@@ -90,6 +96,8 @@ class RemoteServices {
         'Authorization': '${ApiConstants.TOKEN_TYPE} ${ApiConstants.TOKEN}',
       })
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
+      // print('get response = ${response.body}');
+
       return _processResponse(response);
     }on SocketException {
       throw Exception(AppStrings.noInternetConnection);

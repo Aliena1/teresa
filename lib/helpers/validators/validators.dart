@@ -7,6 +7,9 @@ class FormValidators{
   static const SURNAME_VALIDATION_TEXT="Please enter your surname";
   static const DATE_VALIDATION_TEXT="Please select your date of birth";
   static const EMAIL_VALIDATION_TEXT="Please enter your email address";
+  static const securityCode="Please enter the security code";
+  static const currentPasswordText = "Please enter current password";
+  static const newPasswordText= "Please enter new password";
   static const MOBILE_NO_VALIDATION_TEXT="Please enter your mobile number";
   static const PASSWORD_VALIDATION_TEXT="Please enter your password";
   static const CONFIRM_PASSWORD_VALIDATION_TEXT="Please confirm your password";

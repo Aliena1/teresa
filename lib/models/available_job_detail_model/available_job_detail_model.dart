@@ -42,7 +42,7 @@ class AvailableJobDetailResponse {
   final String? endDate;
   final String? startTime;
   final String? endTime;
-  final int? totalDuration;
+  final num? totalDuration;
   final List<dynamic>? companyFlowMap;
   final List<dynamic>? companyEntryDetail;
   final bool? status;

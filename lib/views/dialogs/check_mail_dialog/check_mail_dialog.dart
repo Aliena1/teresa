@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:teresa/constants/colors/colors.dart';
+import '../../../constants/app_assets/app_asset.dart';
 import '../../../constants/dimensions/dimensions.dart';
 
 checkMailDialog(context,String message) {
@@ -28,7 +29,7 @@ checkMailDialog(context,String message) {
                           fontSize: Dimensions.height20,
                           fontWeight: FontWeight.w500
                       )),
-                      Lottie.asset("assets/mail.json",width: Dimensions.width200),
+                      Lottie.asset(AppAssets.mail,width: Dimensions.width200),
                       SizedBox(height: Dimensions.height10,),
                       Text(message,style: TextStyle(
                           fontSize: Dimensions.height14,

@@ -31,7 +31,6 @@ class _LoginState extends State<Login> {
   void initState(){
       loginController.initializeController();
     loginController.getUsername();
-    FlutterNativeSplash.remove();
     super.initState();
   }
 
@@ -80,7 +79,8 @@ class _LoginState extends State<Login> {
                   color: AppColors.STRONG_CYAN,
                   radius: Dimensions.radius8,
                   onPressed: () {
-                    Get.to(() => SignUp());
+                    // Get.to(() => SignUp());
+                    Get.toNamed('/signUp');
                   },
                   fontSize: Dimensions.height18,
                 ),
@@ -136,18 +136,23 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: Dimensions.height23,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: InkWell(
+                    onTap: (){
+                      Get.toNamed('/forgotPassword');
+                    },
+                    child: Text(
                       AppStrings.forgotPassword,
+                      textDirection: TextDirection.rtl,
                       style: TextStyle(
+
                           fontFamily: "Helvetica",
                           fontSize: Dimensions.height14,
                           decoration: TextDecoration.underline,
                           color: const Color(AppColors.MODERATE_BLUE)),
-                    )
-                  ],
+                    ),
+                  ),
                 ),
                 Row(
                   children: [

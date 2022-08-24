@@ -9,6 +9,9 @@ import 'package:teresa/views/widgets/login_signup_component/login_signup_compone
 import 'package:teresa/views/widgets/password_textfield/password_textfield.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/strings/app_strings.dart';
+import '../../../helpers/helperFunction/helperFunctions.dart';
+
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -19,6 +22,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final signupController=SignUpController();
+  final helperFunction = HelperFunction();
+
   @override
   void initState() {
     signupController.initializeController();
@@ -32,7 +37,7 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            LoginSignupComponent(),
+            const LoginSignupComponent(),
             SizedBox(
               height: Dimensions.height19,
             ),
@@ -108,7 +113,7 @@ class _SignUpState extends State<SignUp> {
                                 children: [
                                   Icon(Icons.calendar_month_outlined,
                                       size: Dimensions.height14,
-                                      color: Color(AppColors.DARK_GRAY)),
+                                      color: const Color(AppColors.DARK_GRAY)),
                                   SizedBox(
                                     width: Dimensions.width10,
                                   ),
@@ -125,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                               visible: signupController.isDateSelected.value?true:false,
                               child: Padding(
                                 padding: EdgeInsets.only(top: Dimensions.height10,left: Dimensions.width5),
-                                child: Text("Please select your date of birth",style: TextStyle(
+                                child: Text(AppStrings.selectDate,style: TextStyle(
                                   color: Colors.red.shade700,
                                   fontSize: Dimensions.height10,
                                 ),),
@@ -151,9 +156,9 @@ class _SignUpState extends State<SignUp> {
                               ),),
                           )),),
                       CommonTextField(
-                          name: "Mobile no.",
+                          name: AppStrings.mobileNo,
                           topPoint: Dimensions.height22,
-                          hintText: "Enter mobile no",
+                          hintText: AppStrings.hintMobileNo,
                           controller: signupController.mobileController,
                           nullMessage: FormValidators.MOBILE_NO_VALIDATION_TEXT,
                           validationType:2               ),
@@ -183,9 +188,10 @@ class _SignUpState extends State<SignUp> {
                           ),),
                         ),),),
                       PasswordTextField(
-                        name: "Password",
+                        obscure: helperFunction.passwordShowHide,
+                        name: AppStrings.password,
                         topPoint: Dimensions.height22,
-                        hintText: "Enter your password",
+                        hintText: AppStrings.hintPassword,
                         controller: signupController.passwordController,
                         nullMessage: FormValidators.PASSWORD_VALIDATION_TEXT,
                         lengthMessage: FormValidators.PASSWORD_LENGTH_VALIDATION,
@@ -200,9 +206,10 @@ class _SignUpState extends State<SignUp> {
                           ),),
                         ),),),
                       PasswordTextField(
-                        name: "Confirm password",
+                        obscure: helperFunction.passwordShowHide,
+                        name: AppStrings.confirmPassword,
                         topPoint: Dimensions.height22,
-                        hintText: "Enter your password",
+                        hintText: AppStrings.confirmPasswordHint,
                         controller: signupController.confirmPasswordController,
                         nullMessage: FormValidators.CONFIRM_PASSWORD_VALIDATION_TEXT,
                         lengthMessage: FormValidators.CONFIRM_PASSWORD_LENGTH_VALIDATION,
@@ -222,7 +229,7 @@ class _SignUpState extends State<SignUp> {
                     height: Dimensions.height56,
                   ),
                   CommonButton(
-                    name: "Sign Up",
+                    name: AppStrings.signUp,
                     height: Dimensions.height45,
                     color: AppColors.MODERATE_BLUE,
                     width: double.maxFinite,

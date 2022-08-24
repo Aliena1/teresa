@@ -36,16 +36,16 @@ class SignUpController{
     mobileController=TextEditingController();
   }
 
-  void disposeController(){
-    firstNameController.dispose();
-    surnameController.dispose();
-    emailController.dispose();
-    usernameController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
-    mobileController.dispose();
-    date.value="";
-  }
+  // void disposeController(){
+  //   firstNameController.dispose();
+  //   surnameController.dispose();
+  //   emailController.dispose();
+  //   usernameController.dispose();
+  //   passwordController.dispose();
+  //   confirmPasswordController.dispose();
+  //   mobileController.dispose();
+  //   date.value="";
+  // }
 
   void clearController(){
     firstNameController.clear();
@@ -77,16 +77,19 @@ class SignUpController{
           Loading().showLoading("Submitting");
           await signUpRepo.registerUser(map).then((value) {
             final response=SignUpResponse.fromJson(value);
-            if(response.errors!=null){
-              usernameValidation.value=response.errors["username"]!=null?List.from(response.errors["username"].map((x) => x)):[];
-              mobileNoValidation.value=response.errors["mobile_number"]!=null?List.from(response.errors["mobile_number"].map((x) => x)):[];
-              passwordValidation.value=response.errors["c_password"]!=null?List.from(response.errors["c_password"].map((x) => x)):[];
-              emailValidation.value=response.errors["email"]!=null?List.from(response.errors["email"].map((x) => x)):[];
-            }
+            // if(response.errors!=null){
+            //   usernameValidation.value=response.errors["username"]!=null?List.from(response.errors["username"].map((x) => x)):[];
+            //   mobileNoValidation.value=response.errors["mobile_number"]!=null?List.from(response.errors["mobile_number"].map((x) => x)):[];
+            //   passwordValidation.value=response.errors["c_password"]!=null?List.from(response.errors["c_password"].map((x) => x)):[];
+            //   emailValidation.value=response.errors["email"]!=null?List.from(response.errors["email"].map((x) => x)):[];
+            // }
             if(response.status=="true"){
               Loading().hideLoading();
               checkMailDialog(context,response.message.toString());
               clearController();
+            }
+            else{
+
             }
             Loading().hideLoading();
           }

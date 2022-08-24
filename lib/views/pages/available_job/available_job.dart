@@ -17,7 +17,9 @@ import 'package:teresa/views/pages/no_job_available/no_job_available.dart';
 import 'package:teresa/views/pages/notification/notification.dart';
 import 'package:teresa/views/widgets/common_button/common_button.dart';
 import 'package:teresa/views/widgets/common_textfield/common_textfield.dart';
+
 class AvailableJob extends StatefulWidget {
+
   AvailableJob({Key? key}) : super(key: key);
 
   @override
@@ -25,52 +27,13 @@ class AvailableJob extends StatefulWidget {
 }
 
 class _AvailableJobState extends State<AvailableJob> {
-  final availableJobController=AvailableJobController();
-  static const _pageSize = 5;
-
-  final PagingController _pagingController =
-  PagingController(firstPageKey: 1,invisibleItemsThreshold: 1);
+  final availableJobController = Get.put(AvailableJobController());
 
   @override
   void initState() {
-    _pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(pageKey);
-    });
     super.initState();
   }
 
-  Future<void> _fetchPage(int pageKey) async {
-    try {
-      var queryParameters={
-        "per_page":_pageSize.toString(),
-        "page":pageKey.toString(),
-      };
-      await RemoteServices.getMethodWithParams(ApiConstants.AVAILABLE_JOBS,queryParameters).then((value) {
-        final newItems=AvailableJobsResponse.fromJson(value);
-        final isLastPage = newItems.availableJobsList!.data!.length < _pageSize;
-        print(newItems.meta!.currentPage.toString());
-        print(newItems.meta!.perPage);
-        if (isLastPage) {
-          _pagingController.appendLastPage(newItems.availableJobsList!.data!);
-        } else {
-          final nextPageKey = pageKey + 1;
-          _pagingController.appendPage(newItems.availableJobsList!.data!,nextPageKey);
-
-
-        }
-      });
-
-
-    } catch (error) {
-      throw Exception(error.toString());
-    }
-  }
-
-  @override
-  void dispose(){
-    _pagingController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,21 +48,9 @@ class _AvailableJobState extends State<AvailableJob> {
                 right: Dimensions.width25),
             child: Row(
               mainAxisAlignment:
-              MainAxisAlignment.spaceBetween,
+              MainAxisAlignment.end,
               children: [
-                Container(
-                  width: Dimensions.width40,
-                  height: Dimensions.height40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.transparent,
-                  ),
 
-                ),
-                Image.asset(
-                  "assets/icon.png",
-                  height: Dimensions.height58,
-                ),
                 Container(
                   width: Dimensions.width50,
                   height: Dimensions.height50,
@@ -379,24 +330,33 @@ class _AvailableJobState extends State<AvailableJob> {
               visible: availableJobController.isSetting.value?true:false,
               child: SettingMenu())),
           SizedBox(height: Dimensions.height30,),
-          Flexible(child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimensions.width8),
-            child: PagedListView.separated(
-              separatorBuilder: (context, index) => SizedBox(height: Dimensions.height20,),
-              pagingController: _pagingController,
-              builderDelegate: PagedChildBuilderDelegate(
-                itemBuilder: (context, item, index) {
-                  return AvailableListDetailComponent(declinePressed: (){
-                    availableJobDeclineDialog(context);
-                  },
-                    data: item,
-                  );
+          Flexible(child: GetBuilder<AvailableJobController>(init: AvailableJobController(),
+              builder: (value) =>
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.width8),
+                child: PagedListView(
+                  pagingController: availableJobController.pagingController,
+                  builderDelegate: PagedChildBuilderDelegate(
+                      itemBuilder: (context, item, index) {
+                        return Column(
+                          children: [
+                            AvailableListDetailComponent(declinePressed: (){
+                            },
+                              data: item,
+                            ),
+                            SizedBox(height: Dimensions.height30,),
 
-                },
-                noItemsFoundIndicatorBuilder: (_) => NoJobAvailable()
-              ),
-            ),
-          ))
+                          ],
+                        );
+
+                      },
+                      noItemsFoundIndicatorBuilder: (_) => NoJobAvailable()
+                  ),
+                ),
+              )
+          )
+          ),
+
 
           // Flexible(child: AvailableListDetailComponent())
         ],

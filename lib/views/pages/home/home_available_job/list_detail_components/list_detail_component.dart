@@ -2,17 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:teresa/constants/api_constants/api_constant.dart';
 import 'package:teresa/constants/colors/colors.dart';
 import 'package:teresa/constants/dimensions/dimensions.dart';
+import 'package:teresa/controllers/available_job_controller/decline_available_job_controller.dart';
 import 'package:teresa/controllers/available_job_detail_controller/available_job_detail_controller.dart';
 import 'package:teresa/views/pages/available_job/available_job_detail/available_job_detail.dart';
 import 'package:teresa/views/widgets/common_button/common_button.dart';
 import 'package:get/get.dart';
+
+import '../../../../dialogs/available_job_decline/available_job_decline.dart';
 class AvailableListDetailComponent extends StatelessWidget {
   AvailableListDetailComponent({Key? key,this.declinePressed,this.data}) : super(key: key);
   final declinePressed;
   final availableJobDetailController=AvailableJobDetailController();
+  final declineJobController = DeclineAvailableJobController();
   var data;
   @override
   Widget build(BuildContext context) {
+    var duration = (data.totalDuration);
+    // double num1 = double.parse((12.3412).toStringAsFixed(2));
+    var doubleRoundUp = duration.ceil();
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: Dimensions.width8),
       decoration: BoxDecoration(
@@ -261,27 +269,29 @@ class AvailableListDetailComponent extends StatelessWidget {
                                     )
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Duration",
-                                      style: TextStyle(
-                                          fontFamily: "Helvetica",
-                                          fontSize: Dimensions.height9,
-                                          color: const Color(
-                                              AppColors.MODERATE_BLUE)),
-                                    ),
-                                    SizedBox(
-                                      height: Dimensions.height2,
-                                    ),
-                                    Text(
-                                      "${data.totalDuration} Hours/Day",
-                                      style: TextStyle(
-                                          fontFamily: "Helvetica",
-                                          fontSize: Dimensions.height13),
-                                    ),
-                                  ],
+                                Flexible(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Duration",
+                                        style: TextStyle(
+                                            fontFamily: "Helvetica",
+                                            fontSize: Dimensions.height9,
+                                            color: const Color(
+                                                AppColors.MODERATE_BLUE)),
+                                      ),
+                                      SizedBox(
+                                        height: Dimensions.height2,
+                                      ),
+                                      Text(
+                                        "$doubleRoundUp Hours/Day",
+                                        style: TextStyle(
+                                            fontFamily: "Helvetica",
+                                            fontSize: Dimensions.height13),
+                                      ),
+                                    ],
+                                  ),
                                 )
                               ],
                             )
@@ -335,8 +345,12 @@ class AvailableListDetailComponent extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: declinePressed,
+                    GestureDetector(
+                  onTap: (){
+                    availableJobDeclineDialog(context,data.jobId.toString());
+
+
+                  },
                   child: Text(
                     "Decline",
                     style: TextStyle(
@@ -371,7 +385,9 @@ class AvailableListDetailComponent extends StatelessWidget {
                 CommonButton(
                   width: Dimensions.width93,
                   height: Dimensions.height52,
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   color: AppColors.STRONG_BLUE,
                   name: "Accept",
                   radius: Dimensions.radius8,

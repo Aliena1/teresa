@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 class AppColors{
   static const STRONG_CYAN=0xff1EB5BA;
   static const LIGHT_GRAYISH_CYAN=0xffeff3f4;
@@ -17,4 +19,7 @@ class AppColors{
   static const VERY_PALE_MOSTLY_WHITE_BLUE=0xffECECFF;
   static const VIVID_RED=0xffF91010;
   static const FORM_COLORS_DARKBLUE=0xff020547;
+
+  static const darkGray = Color(0xff707070);
+  static const subtitleBlack = Color(0xff333333);
 }

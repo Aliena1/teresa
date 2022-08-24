@@ -8,6 +8,7 @@ class HelperFunction{
 
   // password visibility
   var passwordShowHide = true.obs;
+  var confirmPasswordShowHide = true.obs;
   void showHidePassword(password){
     password.value = !password.value;
   }

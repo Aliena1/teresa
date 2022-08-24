@@ -15,7 +15,8 @@ class PasswordTextField extends StatelessWidget {
       this.controller,
       this.nullMessage,
       this.lengthMessage,
-      this.obscure = false})
+      this.obscure = false,
+       })
       : super(key: key);
 
   final helperFunction = HelperFunction();
@@ -52,13 +53,15 @@ class PasswordTextField extends StatelessWidget {
               decoration: InputDecoration(
                   suffixIcon: Padding(
                     padding: const EdgeInsets.only(right: 10.0),
-                    child: Container(
+                    child: name == "Password"?
+                    Container(
                       width: Dimensions.width40,
                       height: Dimensions.height40,
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(AppColors.LIGHT_GRAYISH_BLUE2)),
-                      child: IconButton(
+                      child:
+                      IconButton(
                           onPressed: () {
                             helperFunction.showHidePassword(obscure);
                           },
@@ -67,8 +70,9 @@ class PasswordTextField extends StatelessWidget {
                             color: const Color(AppColors.DARK_GRAYISH_BLUE),
                             size: Dimensions.height24,
                           ):Icon(Icons.visibility_off,color: const Color(AppColors.DARK_GRAYISH_BLUE),
-                            size: Dimensions.height24,)),
-                    ),
+                            size: Dimensions.height24,)
+                      ),
+                    ): null
                   ),
                   hintText: hintText,
                   hintStyle: TextStyle(

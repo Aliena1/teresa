@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:teresa/constants/colors/colors.dart';
+import 'package:teresa/routes/route.dart';
 import 'package:teresa/views/pages/Signup/signup.dart';
 import 'package:teresa/views/pages/bottom_navigation/bottom_navigation.dart';
+import 'package:teresa/views/pages/login/change_password.dart';
+import 'package:teresa/views/pages/login/create_new_password.dart';
+import 'package:teresa/views/pages/login/security_code.dart';
+import 'package:teresa/views/pages/login/forgot_password.dart';
 import 'package:teresa/views/pages/login/login.dart';
 import 'package:teresa/views/pages/schedule/schedule.dart';
 import 'package:teresa/views/pages/splash_screen/splash_screen.dart';
@@ -23,12 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      getPages: [
-        GetPage(name: '/', page: () => const SplashScreen()),
-        GetPage(name: '/login', page: () => const Login()),
-        GetPage(name: '/signUp', page: () => const SignUp()),
-        GetPage(name: '/home', page: () => const TeresaBottomNavigation()),
-      ],
+      getPages: Routes.routes,
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(AppColors.WHITE),
         fontFamily: "Helvetica"

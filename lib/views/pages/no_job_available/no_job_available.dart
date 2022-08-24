@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../../constants/strings/app_strings.dart';
 class NoJobAvailable extends StatelessWidget {
   const NoJobAvailable({Key? key}) : super(key: key);
 
@@ -9,7 +11,7 @@ class NoJobAvailable extends StatelessWidget {
       children: [
         Image.asset("assets/nojob.png"),
         SizedBox(height: 20,),
-        Text("There are no item to display")
+        const Text(AppStrings.noItemsToDisplay)
       ],
     );
   }

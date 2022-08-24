@@ -31,7 +31,6 @@ class _TeresaBottomNavigationState extends State<TeresaBottomNavigation> {
   @override
   void initState() {
     super.initState();
-    FlutterNativeSplash.remove();
   }
 
   void _onItemTapped(int index) {
@@ -94,7 +93,7 @@ class _TeresaBottomNavigationState extends State<TeresaBottomNavigation> {
                 label: 'Active Job',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.school),
+                icon: Icon(Icons.list_alt),
                 label: 'Available job',
               ),
               BottomNavigationBarItem(

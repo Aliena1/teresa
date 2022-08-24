@@ -62,21 +62,9 @@ class _HomeState extends State<Home> {
                                   right: Dimensions.width25),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.end,
                                 children: [
-                                  Container(
-                                    width: Dimensions.width40,
-                                    height: Dimensions.height40,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.transparent,
-                                    ),
 
-                                  ),
-                                  Image.asset(
-                                    "assets/icon.png",
-                                    height: Dimensions.height58,
-                                  ),
                                   Container(
                                     width: Dimensions.width50,
                                     height: Dimensions.height50,
@@ -230,7 +218,7 @@ class _HomeState extends State<Home> {
                         ),
                         NavigationComponents(
                           name: "Available Job",
-                          icon: Icons.work,
+                          icon: Icons.list_alt,
                           index: 1,
                           selected: homeController.selected.value,
                           onPressed: () {

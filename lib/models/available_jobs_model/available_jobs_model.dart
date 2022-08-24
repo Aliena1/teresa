@@ -34,19 +34,19 @@ class AvailableJobsList {
     this.total,
   });
 
-  final int? currentPage;
+  final num? currentPage;
   final List<Datum>? data;
   final String? firstPageUrl;
-  final int? from;
-  final int? lastPage;
+  final num? from;
+  final num? lastPage;
   final String? lastPageUrl;
   final List<Link>? links;
   final dynamic? nextPageUrl;
   final String? path;
   final String? perPage;
   final dynamic? prevPageUrl;
-  final int? to;
-  final int? total;
+  final num? to;
+  final num? total;
 
   factory AvailableJobsList.fromJson(Map<String, dynamic> json) => AvailableJobsList(
     currentPage: json["current_page"] == null ? null : json["current_page"],
@@ -84,19 +84,19 @@ class Datum {
     this.activeJobStatus,
   });
 
-  final int? jobId;
+  final num? jobId;
   final String? path;
   final String? displayImage;
   final String? company;
   final String? companyLocation;
   final String? profession;
   final String? reportTo;
-  final int? companyRateForJobseeker;
+  final num? companyRateForJobseeker;
   final String? startDate;
   final String? endDate;
   final String? startTime;
   final String? endTime;
-  final int? totalDuration;
+  final num? totalDuration;
   final bool? activeJobStatus;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -149,11 +149,11 @@ class Meta {
     this.isRecordsAvailable,
   });
 
-  final int? currentPage;
+  final num? currentPage;
   final String? perPage;
-  final int? lastPage;
-  final int? totalRecords;
-  final int? nextPage;
+  final num? lastPage;
+  final num? totalRecords;
+  final num? nextPage;
   final bool? isRecordsAvailable;
 
   factory Meta.fromJson(Map<String, dynamic> json) => Meta(

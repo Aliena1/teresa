@@ -77,10 +77,6 @@ class AvailableJobDetail extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Image.asset(
-                      "assets/icon.png",
-                      height: Dimensions.height58,
-                    ),
                     Container(
                       width: Dimensions.width50,
                       height: Dimensions.height50,
@@ -163,7 +159,7 @@ class AvailableJobDetail extends StatelessWidget {
                           padding: EdgeInsets.only(top: Dimensions.height5),
                           width:Dimensions.width139,
                           child: Divider(
-                            color: Color(AppColors.LIGHT_GRAYISH_CYAN),
+                            color: const Color(AppColors.LIGHT_GRAYISH_CYAN),
                             thickness: Dimensions.height4,
                           ),
                         ),
@@ -207,118 +203,9 @@ class AvailableJobDetail extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: Dimensions.height21,
-                            left: Dimensions.width32,
-                            right: Dimensions.width32),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  width: Dimensions.width44,
-                                  height: Dimensions.height44,
-                                  decoration: BoxDecoration(
-                                    color: Color(AppColors.WHITE),
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image:
-                                        AssetImage("assets/maplocater.png")),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 7,
-                                        offset: Offset(
-                                            1, 3), // changes position of shadow
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: Dimensions.height13,
-                                ),
-                                Text(
-                                  "Find Route",
-                                  style: TextStyle(
-                                    fontSize: Dimensions.height13,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Container(
-                                  width: Dimensions.width44,
-                                  height: Dimensions.height44,
-                                  decoration: BoxDecoration(
-                                    color: Color(AppColors.WHITE),
-                                    shape: BoxShape.circle,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 7,
-                                        offset: Offset(
-                                            1, 3), // changes position of shadow
-                                      ),
-                                    ],
-                                  ),
-                                  child: Icon(
-                                    Icons.call,
-                                    color: Color(AppColors.STRONG_CYAN),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: Dimensions.height13,
-                                ),
-                                Text(
-                                  "Call",
-                                  style: TextStyle(
-                                    fontSize: Dimensions.height13,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Container(
-                                  width: Dimensions.width44,
-                                  height: Dimensions.height44,
-                                  decoration: BoxDecoration(
-                                    color: Color(AppColors.WHITE),
-                                    shape: BoxShape.circle,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 7,
-                                        offset: Offset(
-                                            1, 3), // changes position of shadow
-                                      ),
-                                    ],
-                                  ),
-                                  child: const Icon(
-                                    Icons.navigation,
-                                    color: Color(AppColors.STRONG_CYAN),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: Dimensions.height13,
-                                ),
-                                Text(
-                                  "Navigation",
-                                  style: TextStyle(
-                                    fontSize: Dimensions.height13,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+
+                      buildNavigation(),
+
                       Padding(
                         padding: EdgeInsets.only(
                             top: Dimensions.height30,
@@ -649,5 +536,120 @@ class AvailableJobDetail extends StatelessWidget {
         ],
       ),
     ));
+  }
+
+  Padding buildNavigation() {
+    return Padding(
+                      padding: EdgeInsets.only(
+                          top: Dimensions.height21,
+                          left: Dimensions.width32,
+                          right: Dimensions.width32),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                width: Dimensions.width44,
+                                height: Dimensions.height44,
+                                decoration: BoxDecoration(
+                                  color: Color(AppColors.WHITE),
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image:
+                                      AssetImage("assets/maplocater.png")),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 7,
+                                      offset: Offset(
+                                          1, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: Dimensions.height13,
+                              ),
+                              Text(
+                                "Find Route",
+                                style: TextStyle(
+                                  fontSize: Dimensions.height13,
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                width: Dimensions.width44,
+                                height: Dimensions.height44,
+                                decoration: BoxDecoration(
+                                  color: Color(AppColors.WHITE),
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 7,
+                                      offset: Offset(
+                                          1, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: Icon(
+                                  Icons.call,
+                                  color: Color(AppColors.STRONG_CYAN),
+                                ),
+                              ),
+                              SizedBox(
+                                height: Dimensions.height13,
+                              ),
+                              Text(
+                                "Call",
+                                style: TextStyle(
+                                  fontSize: Dimensions.height13,
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                width: Dimensions.width44,
+                                height: Dimensions.height44,
+                                decoration: BoxDecoration(
+                                  color: Color(AppColors.WHITE),
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 7,
+                                      offset: Offset(
+                                          1, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: const Icon(
+                                  Icons.navigation,
+                                  color: Color(AppColors.STRONG_CYAN),
+                                ),
+                              ),
+                              SizedBox(
+                                height: Dimensions.height13,
+                              ),
+                              Text(
+                                "Navigation",
+                                style: TextStyle(
+                                  fontSize: Dimensions.height13,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
   }
 }

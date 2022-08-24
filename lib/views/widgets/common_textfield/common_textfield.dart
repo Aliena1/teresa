@@ -37,7 +37,6 @@ class CommonTextField extends StatelessWidget {
           SizedBox(height: Dimensions.height3),
           TextFormField(
             scrollPadding: const EdgeInsets.only(bottom: 285),
-
             key: sign.formKey,
             validator: (value) {
               return validationType == 0

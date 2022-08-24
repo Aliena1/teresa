@@ -12,12 +12,13 @@ class ActiveJobDetailController extends GetxController {
  var jobDetail=[].obs;
 
 
- // @override
- //  void onInit() {
- //    super.onInit();
- //  }
+ @override
+  void onInit() {
+    super.onInit();
+    getJobDetail(156);
+  }
 
- void getJobDetail(jobId) async {
+ void getJobDetail([jobId]) async {
   try {
    var queryParameters = {
     "jobId": jobId
@@ -26,6 +27,7 @@ class ActiveJobDetailController extends GetxController {
     jobDetail.clear();
     final response = AvailableJobDetailResponse.fromJson(value);
     jobDetail.add(response);
+    print(jobDetail);
    });
   }
   catch (e) {
