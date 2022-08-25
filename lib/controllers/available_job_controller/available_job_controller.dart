@@ -5,6 +5,7 @@ import 'package:teresa/repository/available_jobs_repository/available_jobs_repos
 
 import '../../constants/api_constants/api_constant.dart';
 import '../../models/available_jobs_model/available_jobs_model.dart';
+import '../../repository/available_job_detail_repository/decline_available_job_repository.dart';
 import '../../services/remote_services/remote_services.dart';
 import '../../views/dialogs/loader/loader_dialog.dart';
 
@@ -23,6 +24,33 @@ class AvailableJobController extends GetxController{
     });
   } // final availableJobsRepo=AvailableJobsRepository();
 
+  void declineAvailableJob(String stringJobId){
+    // DeclineAvailableJobRepo().declineJob(stringJobId).then((value) => change(value,
+    //     status: RxStatus.success()),onError: (error){
+    //   change(null,status: RxStatus.error(error.toString()));
+    // },);
+
+    DeclineAvailableJobRepo().declineJob(stringJobId).then((value){
+      print('get status tt= ${value['message']}');
+      if(value['status']==true){
+        Get.back();
+        final availableJobController = Get.put(AvailableJobController());
+        // availableJobController.fetchPage(1);
+        // PagingController pagingController = PagingController(firstPageKey: 1,invisibleItemsThreshold: 1);
+        // availableJobController.pagingController.itemList!.removeWhere((element) => element.jobId == stringJobId);
+        pagingController.refresh();
+        update();
+
+
+        // Get.offNamed('/availableJob');
+      }
+      Get.snackbar('...', '${value['message']}');
+
+
+
+    });
+
+  }
 
 
   void changeFilter(){

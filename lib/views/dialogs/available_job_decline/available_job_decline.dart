@@ -7,6 +7,7 @@ import 'package:teresa/constants/dimensions/dimensions.dart';
 import 'package:teresa/repository/available_job_detail_repository/decline_available_job_repository.dart';
 import 'package:teresa/views/widgets/common_button/common_button.dart';
 
+import '../../../controllers/available_job_controller/available_job_controller.dart';
 import '../../../controllers/available_job_controller/decline_available_job_controller.dart';
 import '../loader/loader_dialog.dart';
 
@@ -14,7 +15,7 @@ import '../loader/loader_dialog.dart';
     // Get.lazyPut(() => DeclineAvailableJobController());
     final declineAvailableJobRepo = DeclineAvailableJobRepo();
     DeclineAvailableJobController controller = Get.put(DeclineAvailableJobController());
-    final declineAvailableJobController = DeclineAvailableJobController();
+    final availableJobController = AvailableJobController();
     showDialog(
       context: context,
       builder: (context) {
@@ -82,7 +83,7 @@ import '../loader/loader_dialog.dart';
                         fontSize: Dimensions.height16,
                         color: AppColors.STRONG_BLUE,
                         onPressed: () {
-                          declineAvailableJobController.declineAvailableJob(
+                          availableJobController.declineAvailableJob(
                               stringJobId);
                           // Get.back();
                         },

@@ -330,32 +330,38 @@ class _AvailableJobState extends State<AvailableJob> {
               visible: availableJobController.isSetting.value?true:false,
               child: SettingMenu())),
           SizedBox(height: Dimensions.height30,),
-          Flexible(child: GetBuilder<AvailableJobController>(init: AvailableJobController(),
-              builder: (value) =>
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: Dimensions.width8),
-                child: PagedListView(
-                  pagingController: availableJobController.pagingController,
-                  builderDelegate: PagedChildBuilderDelegate(
-                      itemBuilder: (context, item, index) {
-                        return Column(
-                          children: [
-                            AvailableListDetailComponent(declinePressed: (){
-                            },
-                              data: item,
-                            ),
-                            SizedBox(height: Dimensions.height30,),
+          GetBuilder(
+            init: AvailableJobController(),
+            builder: (value) => Flexible(child:
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.width8),
+            child: RefreshIndicator(
+              onRefresh: () => Future.sync(
+                    () => availableJobController.pagingController.refresh(),
+              ),
+              child: PagedListView(
+                pagingController: availableJobController.pagingController,
+                builderDelegate: PagedChildBuilderDelegate(
+                    itemBuilder: (context, item, index) {
+                      return Column(
+                        children: [
+                          AvailableListDetailComponent(declinePressed: (){
+                          },
+                            data: item,
+                          ),
+                          SizedBox(height: Dimensions.height30,),
 
-                          ],
-                        );
+                        ],
+                      );
 
-                      },
-                      noItemsFoundIndicatorBuilder: (_) => NoJobAvailable()
-                  ),
+                    },
+                    noItemsFoundIndicatorBuilder: (_) => NoJobAvailable()
                 ),
-              )
+              ),
+            ),
           )
-          ),
+
+          ),)
 
 
           // Flexible(child: AvailableListDetailComponent())

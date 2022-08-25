@@ -349,7 +349,6 @@ class AvailableListDetailComponent extends StatelessWidget {
                   onTap: (){
                     availableJobDeclineDialog(context,data.jobId.toString());
 
-
                   },
                   child: Text(
                     "Decline",
